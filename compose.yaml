@@ -53,7 +53,7 @@ services:
 
 
   postgres:
-    image: postgres:16.9-alpine3.22
+    image: postgres:16-alpine
     container_name: auth_postgres
     healthcheck:
       test: ["CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}'"]      
@@ -75,6 +75,8 @@ services:
       SCHEMA_NAME: ${AUTH_DB_SCHEMA}
       DB_SCHEMA_OWNER: ${AUTH_SCHEMA_OWNER}
       SCHEMA_USER_PASSWORD: ${AUTH_SCHEMA_USER_PASSWORD}
+    labels:
+      - team=database
 
 volumes:
   postgres_data:
